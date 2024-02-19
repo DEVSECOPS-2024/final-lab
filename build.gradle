@@ -45,6 +45,10 @@ sonar {
   	}
 }
 
+bootJar {
+    enabled = false
+}
+
 test {
     useJUnitPlatform()
 }
