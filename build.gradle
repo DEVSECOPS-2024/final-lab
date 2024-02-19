@@ -22,13 +22,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
-bootJar {
-    enabled = false
-}
 
-jar {
-    enabled = true
-}
 sonar {
   	properties {
 	    	property "sonar.projectKey", "DEVSECOPS-2024_final-lab"
@@ -38,6 +32,13 @@ sonar {
   	}
 }
 
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}
 
 test {
   useJUnitPlatform()
