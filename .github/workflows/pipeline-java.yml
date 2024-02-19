@@ -14,8 +14,6 @@ jobs:
     steps:
       - name: Descarga repositorio
         uses: actions/checkout@v3
-
-
  
   test:
   
@@ -38,10 +36,10 @@ jobs:
           ./gradlew build
           ls -ltrh build/libs  
           
-    #- name: SAST (Static Application Security Testing)     
-    #  run: |
-    #    chmod +x gradlew
-    #    ./gradlew build sonar -Dsonar.token=${{secrets.SONAR_TOKEN}}
+    - name: SAST (Static Application Security Testing)     
+      run: |
+        chmod +x gradlew
+        ./gradlew build sonar -Dsonar.token=${{secrets.SONAR_TOKEN}}
           
                 
         
