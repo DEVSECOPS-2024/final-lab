@@ -60,5 +60,5 @@ jar {
 }
 
 test {
-  useJUnitPlatform()
+    useJUnitPlatform()
 }
