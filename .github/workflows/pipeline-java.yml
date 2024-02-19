@@ -20,7 +20,10 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-    
+
+      - name: Descarga repositorio
+        uses: actions/checkout@v3
+        
       - name: SAST (Static Application Security Testing)     
         run: |
           chmod +x gradlew
