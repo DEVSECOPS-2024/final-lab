@@ -15,11 +15,10 @@ jobs:
       - name: Descarga repositorio
         uses: actions/checkout@v3
 
-      - name: Build      
+      - name: Build with gradle     
         run: |
           chmod +x gradlew
           ./gradlew build
-          ./gradlew bootJar --debug
           ls -ltrh build/libs
           
                 
