@@ -17,7 +17,7 @@ jobs:
 
 
   test:
-    
+      needs: build
       runs-on: ubuntu-latest
       steps:
       - name: Checkout
@@ -32,8 +32,10 @@ jobs:
       - name: Build project
         run: npm run build
         
-      - name: Testing
-        run: npm run test
+      - name: SAST (Static Application Security Testing)     
+        run: |
+          chmod +x gradlew
+          ./gradlew build sonar -Dsonar.token=${{secrets.SONAR_TOKEN}}
   #test:
   
     #needs: build
