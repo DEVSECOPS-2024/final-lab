@@ -15,11 +15,16 @@ jobs:
       - name: Descarga repositorio
         uses: actions/checkout@v3
 
-      - name: Añadir carpeta y realizar commit
-        run: |
-          mkdir gradle/wrapper
-          git add  gradle/wrapper
-          git commit -m "Añadir nueva-carpeta" || true
-          git push
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+         distribution: 'adopt'
+         java-version: '11'
+
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
+      - name: Build with Gradle
+        run: ./gradlew build
                 
         
