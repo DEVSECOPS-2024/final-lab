@@ -5,12 +5,6 @@ plugins {
   id "org.sonarqube" version "4.2.1.3168"
 }
 
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(17))
-    }
-}
-
 apply plugin: 'java'
 
 group = 'org.springframework.samples'
@@ -55,9 +49,6 @@ bootJar {
     enabled = false
 }
 
-jar {
-    enabled = true
-}
 test {
     useJUnitPlatform()
 }
