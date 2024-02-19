@@ -15,16 +15,8 @@ jobs:
       - name: Descarga repositorio
         uses: actions/checkout@v3
 
-      - name: Set up JDK
-        uses: actions/setup-java@v2
-        with:
-         distribution: 'adopt'
-         java-version: '11'
-
-      - name: Make gradlew executable
-        run: chmod +x ./gradlew
-
       - name: Build with Gradle
-        run: ./gradlew build
+        uses: gradle/actions@v3.1.0
+          
                 
         
