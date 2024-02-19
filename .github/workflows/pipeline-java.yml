@@ -19,7 +19,7 @@ jobs:
         run: |
           mkdir gradle
           echo "# Contenido de la carpeta" > gradle/README.md
-          git add gradle/wrapper
+          git add gradle
           git commit -m "gradle" || true
           git push
           
