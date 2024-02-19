@@ -14,20 +14,32 @@ jobs:
     steps:
       - name: Descarga repositorio
         uses: actions/checkout@v3
-  
+
+
   test:
-  
-    needs: build
     runs-on: ubuntu-latest
-    steps: 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Build Action
+        run: |
+          npm install
+          npm run bundle
+      - name: Run TypeScript Action
+        uses: ./
+  #test:
+  
+    #needs: build
+    #runs-on: ubuntu-latest
+    #steps: 
                 
-    - name: Descarga repositorio
-      uses: actions/checkout@v3
+    #- name: Descarga repositorio
+    #  uses: actions/checkout@v3
         
-    - name: SAST (Static Application Security Testing)     
-      run: |
-        chmod +x gradlew
-        ./gradlew build sonar -Dsonar.token=${{secrets.SONAR_TOKEN}}
+    #- name: SAST (Static Application Security Testing)     
+    #  run: |
+    #    chmod +x gradlew
+    #    ./gradlew build sonar -Dsonar.token=${{secrets.SONAR_TOKEN}}
           
                 
         
