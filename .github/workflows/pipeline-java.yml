@@ -15,8 +15,21 @@ jobs:
       - name: Descarga repositorio
         uses: actions/checkout@v3
 
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'adopt'
+          java-version: '11'
+
+      - name: Set up Gradle
+        uses: gradle/setup-gradle@v2
+        with:
+          distribution: 'wrapper'
+          wrapper-version: '7.2'
+          tasks: 'assemble'
+
       - name: Build with Gradle
-        uses: gradle/actions@v3
+        run: ./gradlew build
           
                 
         
