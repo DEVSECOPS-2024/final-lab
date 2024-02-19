@@ -19,6 +19,7 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew build
+          ./gradlew bootJar --debug
           ls -ltrh build/libs
           
                 
