@@ -24,6 +24,11 @@ jobs:
       - name: Descarga repositorio
         uses: actions/checkout@v3
 
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4.0.0
+        with: 
+          java-version: 17
+          distribution: 'temurin'
         
       - name: SAST (Static Application Security Testing)     
         run: |
