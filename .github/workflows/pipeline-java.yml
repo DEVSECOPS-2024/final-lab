@@ -83,7 +83,7 @@ jobs:
   deploy:
     
     runs-on: self-hosted
-    needs: build
+    needs: test
     steps:
       
       - uses: actions/checkout@v3
