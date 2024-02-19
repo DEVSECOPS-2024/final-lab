@@ -21,13 +21,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: Descarga repositorio
-        uses: actions/checkout@v3
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '14'  
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build TypeScript
+      run: npm run build  
+      
+    - name: Descarga repositorio
+      uses: actions/checkout@v3
         
-      - name: SAST (Static Application Security Testing)     
-        run: |
-          chmod +x gradlew
-          ./gradlew build sonar -Dsonar.token=${{secrets.SONAR_TOKEN}}
+    - name: SAST (Static Application Security Testing)     
+      run: |
+        chmod +x gradlew
+        ./gradlew build sonar -Dsonar.token=${{secrets.SONAR_TOKEN}}
           
                 
         
