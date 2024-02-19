@@ -14,6 +14,30 @@ jobs:
     steps:
       - name: Descarga repositorio
         uses: actions/checkout@v3
+
+      - name: Compilacion JAVA
+        run: |
+          chmod +x gradlew
+          ./gradlew build
+      
+      - name: Copia de Jar a Raiz de proyecto
+        run: |
+          cp $GITHUB_WORKSPACE/build/libs/lab-final.jar .
+          chmod 777 lab-final.jar
+          ls -lt
+          
+      - name: Dependency Check
+        uses: dependency-check/Dependency-Check_Action@1.1.0
+        with:
+          project: 'lab-final'
+          path: '.'
+          format: 'HTML' 
+      
+      - name: Upload Test results
+        uses: actions/upload-artifact@master
+        with:
+           name: Depcheck report
+           path: ${{github.workspace}}/reports    
  
   test:
   
@@ -24,11 +48,11 @@ jobs:
     - name: Descarga repositorio
       uses: actions/checkout@v3
     
-    - name: Set up JDK 17
-      uses: actions/setup-java@v4.0.0
-      with:
-          java-version: 17
-          distribution: 'temurin'
+    #- name: Set up JDK 17
+    #  uses: actions/setup-java@v4.0.0
+    #  with:
+    #      java-version: 17
+    #      distribution: 'temurin'
      
     - name: Build      
       run: |
@@ -40,6 +64,8 @@ jobs:
       run: |
         chmod +x gradlew
         ./gradlew build sonar -Dsonar.token=${{secrets.SONAR_TOKEN}}
+
+   
         
         
           
