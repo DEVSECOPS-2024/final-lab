@@ -21,6 +21,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+    - name: Directorio
+      run: | 
+        cd $GITHUB_WORKSPACE
+        ls -lt
+        
     - name: TypeScript Build 
       uses: alexthemaster/action-build-typescript@v1.3.1
                 
