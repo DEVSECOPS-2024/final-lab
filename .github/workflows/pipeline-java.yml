@@ -15,15 +15,11 @@ jobs:
       - name: Descarga repositorio
         uses: actions/checkout@v3
 
-      - name: Create and Add Folder
+      - name: Build      
         run: |
-          mkdir gradle
-          echo "# Contenido de la carpeta" > gradle/README.md
-          git add gradle
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Actions"
-          git commit -m "gradle" || true
-          git push
+          chmod +x gradlew
+          ./gradlew build
+          ls -ltrh build/libs
           
                 
         
