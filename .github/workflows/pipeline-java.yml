@@ -15,10 +15,11 @@ jobs:
       - name: Descarga repositorio
         uses: actions/checkout@v3
 
-      - name: Build      
+      - name: Añadir carpeta y realizar commit
         run: |
-          chmod +x gradlew
-          ./gradlew build
-          ls -ltrh build/libs
+          mkdir gradle/wrapper
+          git add  gradle/wrapper
+          git commit -m "Añadir nueva-carpeta" || true
+          git push
                 
         
