@@ -16,9 +16,6 @@ jobs:
       - name: Descarga repositorio
         uses: actions/checkout@v3
 
-      - name: Compilacion JAVA
-        run: |
-          chmod +x gradlew
-          ./gradlew build
+  
           
       
