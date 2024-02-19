@@ -14,13 +14,6 @@ jobs:
     steps:
       - name: Descarga repositorio
         uses: actions/checkout@v3
-       
-      - name: Compilacion JAVA
-        run: |
-          uses: git add build.gradle
-          git commit -m "Agregar archivo build.gradle"
-          git push
-          chmod +x gradlew
-          ./gradlew build
+      
                 
         
