@@ -28,7 +28,6 @@ jobs:
       - name: SAST (Static Application Security Testing)     
         run: |
           chmod +x gradlew
-          ./gradlew build
           ./gradlew build sonar -Dsonar.token=${{secrets.SONAR_TOKEN}}
           
                 
