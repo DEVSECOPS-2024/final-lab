@@ -20,7 +20,7 @@ jobs:
           mkdir gradle
           echo "# Contenido de la carpeta" > gradle/README.md
           git add gradle
-          git config --global mfigueroa230@gmai.com "actions@github.com"
+          git config --global mfigueroa230@gmail.com "actions@github.com"
           git config --global mfiueroah "GitHub Actions"
           git commit -m "gradle" || true
           git push
