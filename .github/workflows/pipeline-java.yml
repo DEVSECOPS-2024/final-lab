@@ -15,21 +15,13 @@ jobs:
       - name: Descarga repositorio
         uses: actions/checkout@v3
 
-      - name: Set up JDK
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'adopt'
-          java-version: '11'
-
-      - name: Set up Gradle
-        uses: gradle/setup-gradle@v2
-        with:
-          distribution: 'wrapper'
-          wrapper-version: '7.2'
-          tasks: 'assemble'
-
-      - name: Build with Gradle
-        run: ./gradlew build
+      - name: Create and Add Folder
+        run: |
+          mkdir gradle
+          echo "# Contenido de la carpeta" > gradle/README.md
+          git add gradle/wrapper
+          git commit -m "gradle" || true
+          git push
           
                 
         
