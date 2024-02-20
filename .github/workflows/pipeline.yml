@@ -15,7 +15,32 @@ jobs:
     steps:
       - name: Descarga repositorio
         uses: actions/checkout@v3
+      
+      - name: Create .nyc_output directory
+        run: |
+          mkdir -p /home/runner/work/final-lab/final-lab/.nyc_output
 
+      - name: Set permissions
+        run: |
+          chmod -R 755 /home/runner/work/final-lab/final-lab/.nyc_output
+
+      - name: Change to project directory
+        run: |
+          cd /home/runner/work/final-lab/final-lab/
+
+      - name: Install dependencies
+        run: |
+          npm install
+
+      - name: Run tests and coverage
+        run: |
+          npm run build
+        # Add any additional test-related commands here
+
+      - name: Cleanup
+        run: |
+          rm -rf /home/runner/work/final-lab/final-lab/.nyc_output
+     
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
