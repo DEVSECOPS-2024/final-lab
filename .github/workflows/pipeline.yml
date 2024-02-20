@@ -20,11 +20,11 @@ jobs:
       #    chmod +x gradlew
       #    ./gradlew build
           
-      - name: Copia de Jar a Raiz de proyecto
-        run: |
-          cp $GITHUB_WORKSPACE/build/libs/final-lab-2.6.0-plain.jar .
-          chmod 777 final-lab-2.6.0-plain.jar
-          ls -ltra    
+      #- name: Copia de Jar a Raiz de proyecto
+      #  run: |
+      #    cp $GITHUB_WORKSPACE/build/libs/final-lab-2.6.0-plain.jar .
+      #   chmod 777 final-lab-2.6.0-plain.jar
+       #  ls -ltra    
           
       - name: Dependency Check
         uses: dependency-check/Dependency-Check_Action@1.1.0
