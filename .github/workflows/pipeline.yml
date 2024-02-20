@@ -45,14 +45,14 @@ jobs:
           username: ${{secrets.DOCKER_USERNAME}}
           password: ${{secrets.DOCKER_PASSWORD}}
           
-      - name: Docker Build
-        run: |
-          docker build --tag mfigueroah/final-lab .
-          docker images
+      #- name: Docker Build
+      #  run: |
+      #    docker build --tag mfigueroah/final-lab .
+      #    docker images
 
-      - name: Docker Push
-        run: |
-          docker push mfigueroah/final-lab:latest
+      #- name: Docker Push
+      #  run: |
+      #    docker push mfigueroah/final-lab:latest
  
   test:
   
