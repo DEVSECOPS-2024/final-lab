@@ -5,7 +5,6 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    #"build": "tsc && vite build",
     "build": "tsc && vite build && nyc report --reporter=lcov --reporter=text-summary",
     "preview": "vite preview"
   },
