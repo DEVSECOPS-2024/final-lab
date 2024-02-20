@@ -23,7 +23,5 @@ jobs:
         run : npm install --save-dev sonar-scanner
       
       - name: SonarCloud Scan
-        run: npm run sonar-scanner
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      
+        run: sonar-scanner -Dsonar.host.url="https://sonarcloud.io" -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+        
