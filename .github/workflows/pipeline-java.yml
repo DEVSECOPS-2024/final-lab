@@ -18,7 +18,10 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-
+      
+      - name: Installsonnar scanner
+        run : npm install --save-dev sonar-scanner
+      
       - name: SonarCloud Scan
         run: npm run sonar-scanner
         env:
