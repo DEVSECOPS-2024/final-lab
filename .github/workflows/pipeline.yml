@@ -22,7 +22,7 @@ jobs:
           node-version: '16'
     
       - name: Install Nyc
-        run: chmod 777 npm install --save-dev nyc
+        run: npm install --save-dev nyc
     
       - name: Install dependencies
         run: npm install
