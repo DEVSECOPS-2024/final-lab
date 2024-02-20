@@ -67,7 +67,10 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '20'
-
+    
+    - name: Install Nyc
+      run: npm install --save-dev nyc
+    
     - name: Install dependencies
       run: npm install
 
