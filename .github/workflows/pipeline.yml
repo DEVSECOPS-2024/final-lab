@@ -19,10 +19,10 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: '16'
     
       - name: Install Nyc
-        run: npm install --save-dev nyc
+        run: chmod 777 npm install --save-dev nyc
     
       - name: Install dependencies
         run: npm install
