@@ -24,7 +24,11 @@ jobs:
       - name: Install Nyc
         run: npm install --save-dev nyc
     
-      - name: Install dependen
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests and coverage
+        run: npm run build 
                
       #- name: Compilacion JAVA
       #  run: |
