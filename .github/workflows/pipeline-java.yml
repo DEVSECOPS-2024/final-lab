@@ -69,11 +69,11 @@ jobs:
           java-version: 17
           distribution: 'temurin'
      
-    #- name: Build      
-    #  run: |
-    #      chmod +x gradlew
-    #      ./gradlew build
-    #      ls -ltrh build/libs  
+    - name: Build      
+      run: |
+          chmod +x gradlew
+          ./gradlew build
+          ls -ltrh build/libs  
           
     #- name: SAST (Static Application Security Testing)     
     #  run: |
