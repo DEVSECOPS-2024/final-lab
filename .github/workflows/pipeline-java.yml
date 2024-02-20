@@ -80,17 +80,17 @@ jobs:
         chmod +x gradlew
         ./gradlew build sonar -Dsonar.token=${{secrets.SONAR_TOKEN}}
 
-  deploy:
+  #deploy:
     
-    runs-on: self-hosted
-    needs: test
-    steps:
+    #runs-on: self-hosted
+    #needs: test
+    #steps:
       
-      - uses: actions/checkout@v3
+      #- uses: actions/checkout@v3
 
-      - name: Deploy to Minukube
-        run: |
-          kubectl apply -f deployment.yml
+      #- name: Deploy to Minukube
+        #run: |
+          #kubectl apply -f deployment.yml
         
         
           
