@@ -83,24 +83,32 @@ jobs:
 
     - name: Run tests and coverage
       run: npm run build 
+      
+    - name: SonarCloud
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis 
     
-    #- name: SonarCloud
-    #  uses: actions/checkout@v3
-    #  with:
-    #    fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-
-    - name: Run SonarCloud analysis
-      run: |
-        npm install -g sonarqube-scanner
-        sonar-scanner
+    - name: SonarQube Quality Gate check
+      uses: sonarsource/sonarqube-quality-gate-action@master
       env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_TOKEN: ${{secrets.TOKEN_SONARCLOUD}}  
+        SONAR_HOST_URL: https://sonarcloud.io
+      with:
+        scanMetadataReportFile: build/sonar/report-task.txt
         
-    - name: SonarCloud Scan
-      uses: SonarSource/sonarcloud-github-action@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    #- name: Run SonarCloud analysis
+    #  run: |
+    #    npm install -g sonarqube-scanner
+    #    sonar-scanner
+    #  env:
+    #    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        
+   # - name: SonarCloud Scan
+   #   uses: SonarSource/sonarcloud-github-action@master
+   #   env:
+   #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
+   #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
     
     
     #- name: Set up JDK 17
