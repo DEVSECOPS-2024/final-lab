@@ -22,6 +22,9 @@ jobs:
       - name: Installsonnar scanner
         run : npm install --save-dev sonar-scanner
       
-      - name: SonarCloud Scan
-        run: sonar-scanner -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-        
+      - name: SonarQube Quality Gate check
+        uses: sonarsource/sonarqube-quality-gate-action@master
+        env:
+          SONAR_TOKEN: ${{secrets.TOKEN_SONARCLOUD}}  
+          SONAR_HOST_URL: https://sonarcloud.io
+
