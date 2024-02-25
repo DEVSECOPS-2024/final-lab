@@ -49,8 +49,9 @@ jobs:
         with:
           image-ref: 'mfigueroah/final-lab:latest'
           format: 'table'
+          exit-code: 1
           severity: 'CRITICAL,HIGH,MEDIUM'
-      
+                 
       - name: Docker Push
         run: |
           docker push mfigueroah/final-lab:latest
