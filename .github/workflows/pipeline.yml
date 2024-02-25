@@ -68,6 +68,10 @@ jobs:
       - name: Docker Push
         run: |
           docker push mfigueroah/final-lab:latest
+
+      - name: Pull de la Imagen Docker
+        run: |
+          docker pull mfigueroah/final-lab:latest    
       
   #test:
   
