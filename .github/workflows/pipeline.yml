@@ -39,7 +39,7 @@ jobs:
           CVSS_THRESHOLD=6.0  # Cambia esto según tu umbral de CVSS
           
           # Extraer los puntajes CVSS y verificar si alguno supera el umbral
-          if grep -E 'CVSSv3:[[:space:]]*Base Score: ([0-9]+\.[0-9]+)' dependency-check-report.html | awk -F' ' '{ if($NF >= '"$CVSS_THRESHOLD"') exit 1; }'; then
+          if grep -E 'CVSSv3:[[:space:]]*Base Score: ([0-9]+\.[0-9]+)' ${{github.workspace}}/reports/dependency-check-report.html | awk -F' ' '{ if($NF >= '"$CVSS_THRESHOLD"') exit 1; }'; then
             echo "Se encontraron vulnerabilidades críticas con un puntaje CVSS igual o mayor a $CVSS_THRESHOLD."
             exit 1
           else
