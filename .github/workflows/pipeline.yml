@@ -94,10 +94,15 @@ jobs:
     
     steps:
             
-    - name: Despliegue
-      run: |
-        docker run -p 8085:8085 --name final-lab-deploy -d mfigueroah/final-lab:latest
-        shell: pwsh
+    #- name: Despliegue
+    #  run: |
+    #    docker run -p 8085:8085 --name final-lab-deploy -d mfigueroah/final-lab:latest
+    #    shell: pwsh
+      - uses: actions/checkout@v3
+
+      - name: Deploy to Minukube
+        run: |
+          kubectl apply -f deployment.yml
     
 
 
