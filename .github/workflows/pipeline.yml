@@ -100,15 +100,18 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
-  #deploy:
+  deploy:
+   needs: test
+   runs-on: self-hosted
+   steps: 
+   - name: Pull de la Imagen Docker
+     run: |
+       docker pull mfigueroah/final-lab:latest
+
+   - name: Despliegue Aplicación
+     run: |
+       dockerrun -p 8085:8085 --name lab-final-deploy -d mfigueroah/final-lab:latest
     
-    #runs-on: self-hosted
-    #needs: test
-    #steps: 
-      #- uses: actions/checkout@v3
-      #- name: Deploy to Minukube
-        #run: |
-          #kubectl apply -f deployment.yml
     
 
 
