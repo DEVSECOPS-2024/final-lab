@@ -68,10 +68,6 @@ jobs:
       - name: Docker Push
         run: |
           docker push mfigueroah/final-lab:latest
-
-      - name: Pull de la Imagen Docker
-        run: |
-          docker pull mfigueroah/final-lab:latest    
       
   #test:
   
@@ -93,17 +89,20 @@ jobs:
     runs-on: self-hosted
     
     steps:
-
+    - name: Pull de la Imagen Docker
+      run: |
+        docker pull mfigueroah/final-lab:latest
             
-    #- name: Despliegue
-    #  run: |
-    #    docker run -p 8085:8085 --name final-lab-deploy -d mfigueroah/final-lab:latest
-    #    shell: pwsh
-      - uses: actions/checkout@v3
+    - name: Despliegue
+      run: |
+        docker run -p 8085:8085 --name final-lab-deploy -d mfigueroah/final-lab:latest
+        shell: pwsh
+      
+      #- uses: actions/checkout@v3
 
-      - name: Deploy to Minukube
-        run: |
-          kubectl apply -f deployment.yml
+      #- name: Deploy to Minukube
+        #run: |
+          #kubectl apply -f deployment.yml
     
 
 
