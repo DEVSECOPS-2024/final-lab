@@ -88,39 +88,24 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
-        
-    - name: SonarQube Quality Gate check
-      uses: sonarsource/sonarqube-quality-gate-action@master
-      env:
-        SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}  
-        SONAR_HOST_URL: https://sonarcloud.io
-      with:
-        scanMetadataReportFile: build/sonar/report-task.txt
-        
-  #deploy:
-    #needs: test
-    #runs-on: self-hosted
+     
+  deploy:
+    needs: test
+    runs-on: self-hosted
     
-    #steps:
+    steps:
+     
+     - name: Pull de la Imagen Docker
+       run: docker pull mfigueroah/final-lab:latest
+       shell: pwsh
+     
+     - name: Despliegue
+       run: docker run -p 8085:8085 --name final-lab-deploy -d mfigueroah/final-lab:latest
+       shell: pwsh
 
-     #- name: Install powershell
-      # uses: cakhanif/action-install-powershell@v1
-     
-     #- name: Pull de la Imagen Docker
-      # run: docker pull mfigueroah/final-lab:latest
-      # shell: pwsh
-
-     #- name: Stop previous Docker container
-       #run: docker stop final-lab-deploy || true
-       #shell: pwsh
-     
-     #- name: Remove previous Docker container
-       #run: docker rm final-lab-deploy || true
-       #shell: pwsh
-     
-     #- name: Despliegue
-       #run: docker run -p 8085:8085 --name final-lab-deploy -d mfigueroah/final-lab:latest
-       #shell: pwsh
-    
+     - name: OWASAP ZAP Scan
+       uses: zaproxy/action-baseline@v0.11.0
+       with:
+         target: 'http://localhost:8080/'
 
 
