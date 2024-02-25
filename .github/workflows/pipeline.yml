@@ -69,45 +69,50 @@ jobs:
         run: |
           docker push mfigueroah/final-lab:latest
       
-  #test:
+  test:
   
-    #needs: build
-    #runs-on: ubuntu-latest
-    #steps: 
-                
-    #- name: Descarga repositorio
-    #  uses: actions/checkout@v3
-    
-    #- name: SonarQube Scan
-    #  uses: sonarsource/sonarqube-scan-action@master
-    #  env:
-    #    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-    #    SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-  
-  deploy:
     needs: build
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
+    steps: 
+                
+    - name: Descarga repositorio
+      uses: actions/checkout@v3
     
-    steps:
+    - name: SonarCloud
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
 
-     - name: Install powershell
-       uses: cakhanif/action-install-powershell@v1
-     
-     - name: Pull de la Imagen Docker
-       run: docker pull mfigueroah/final-lab:latest
-       shell: pwsh
+    - name: SonarCloud Scan
+      uses: SonarSource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  
+  
+  #deploy:
+    #needs: test
+    #runs-on: self-hosted
+    
+    #steps:
 
-     - name: Stop previous Docker container
-       run: docker stop final-lab-deploy || true
-       shell: pwsh
+     #- name: Install powershell
+      # uses: cakhanif/action-install-powershell@v1
      
-     - name: Remove previous Docker container
-       run: docker rm final-lab-deploy || true
-       shell: pwsh
+     #- name: Pull de la Imagen Docker
+      # run: docker pull mfigueroah/final-lab:latest
+      # shell: pwsh
+
+     #- name: Stop previous Docker container
+       #run: docker stop final-lab-deploy || true
+       #shell: pwsh
      
-     - name: Despliegue
-       run: docker run -p 8085:8085 --name final-lab-deploy -d mfigueroah/final-lab:latest
-       shell: pwsh
+     #- name: Remove previous Docker container
+       #run: docker rm final-lab-deploy || true
+       #shell: pwsh
+     
+     #- name: Despliegue
+       #run: docker run -p 8085:8085 --name final-lab-deploy -d mfigueroah/final-lab:latest
+       #shell: pwsh
     
 
 
