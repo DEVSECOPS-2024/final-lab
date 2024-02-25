@@ -97,7 +97,7 @@ jobs:
     - name: Despliegue
       run: |
         docker run -p 8085:8085 --name final-lab-deploy -d mfigueroah/final-lab:latest
-    
+        shell: pwsh
     
 
 
