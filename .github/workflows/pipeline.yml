@@ -90,7 +90,7 @@ jobs:
    steps: 
    - name: Pull de la Imagen Docker
      run: |
-       pwsh -Command "docker pull mfigueroah/final-lab:latest"
+       docker pull mfigueroah/final-lab:latest
 
    - name: Despliegue Aplicación
      run: |
