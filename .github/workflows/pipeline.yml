@@ -28,23 +28,23 @@ jobs:
           format: 'HTML'
           failOnCVSS: '6'
 
+      - name: Upload Test results
+        uses: actions/upload-artifact@master
+        with:
+           name: Depcheck report
+           path: ${{github.workspace}}/reports  
+
       - name: Verificar vulnerabilidades críticas
         run: |
           CVSS_THRESHOLD=6.0  # Cambia esto según tu umbral de CVSS
           
           # Extraer los puntajes CVSS y verificar si alguno supera el umbral
           if grep -E 'CVSSv3:[[:space:]]*Base Score: ([0-9]+\.[0-9]+)' dependency-check-report.html | awk -F' ' '{ if($NF >= '"$CVSS_THRESHOLD"') exit 1; }'; then
-          echo "Se encontraron vulnerabilidades críticas con un puntaje CVSS igual o mayor a $CVSS_THRESHOLD."
-          exit 1
+            echo "Se encontraron vulnerabilidades críticas con un puntaje CVSS igual o mayor a $CVSS_THRESHOLD."
+            exit 1
           else
-          echo "No se encontraron vulnerabilidades críticas con un puntaje CVSS igual o mayor a $CVSS_THRESHOLD."
-          fin
-      
-      - name: Upload Test results
-        uses: actions/upload-artifact@master
-        with:
-           name: Depcheck report
-           path: ${{github.workspace}}/reports  
+            echo "No se encontraron vulnerabilidades críticas con un puntaje CVSS igual o mayor a $CVSS_THRESHOLD."
+          fin  
            
       - name: Docker Login   
         uses: docker/login-action@v2.2.0
