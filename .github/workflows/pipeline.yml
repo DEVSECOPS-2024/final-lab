@@ -44,7 +44,7 @@ jobs:
             exit 1
           else
             echo "No se encontraron vulnerabilidades críticas con un puntaje CVSS igual o mayor a $CVSS_THRESHOLD."
-          fin  
+          fi 
            
       - name: Docker Login   
         uses: docker/login-action@v2.2.0
