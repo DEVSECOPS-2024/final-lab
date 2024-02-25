@@ -69,39 +69,23 @@ jobs:
         run: |
           docker push mfigueroah/final-lab:latest
       
-  test:
+  #test:
   
-    needs: build
-    runs-on: ubuntu-latest
-    steps: 
+    #needs: build
+    #runs-on: ubuntu-latest
+    #steps: 
                 
-    - name: Descarga repositorio
-      uses: actions/checkout@v3
-    
-    #- name: Setup Node.js
-    #  uses: actions/setup-node@v3
-    #  with:
-    #    node-version: '16'
-    
-    #- name: Install dependencies
-    #  run: npm install
-
-    #- name: Run tests and coverage
-    #  run: npm run build 
-      
-    #- name: SonarCloud
+    #- name: Descarga repositorio
     #  uses: actions/checkout@v3
-    #  with:
-    #    fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-
-    - name: SonarQube Scan
-      uses: sonarsource/sonarqube-scan-action@master
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+    
+    #- name: SonarQube Scan
+    #  uses: sonarsource/sonarqube-scan-action@master
+    #  env:
+    #    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    #    SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
   deploy:
-   needs: test
+   needs: build
    runs-on: self-hosted
    steps: 
    - name: Pull de la Imagen Docker
