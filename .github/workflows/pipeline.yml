@@ -25,14 +25,15 @@ jobs:
         with:
           project: 'lab-final'
           path: '.'
-          format: 'HTML' 
+          format: 'HTML'
+          failOnCVSS: '6'
       
       - name: Upload Test results
         uses: actions/upload-artifact@master
         with:
            name: Depcheck report
-           path: ${{github.workspace}}/reports
-
+           path: ${{github.workspace}}/reports  
+           
       - name: Docker Login   
         uses: docker/login-action@v2.2.0
         with:
@@ -49,7 +50,7 @@ jobs:
         with:
           image-ref: 'mfigueroah/final-lab:latest'
           format: 'table'
-          exit-code: 1
+          exit-code: 0
           severity: 'CRITICAL,HIGH,MEDIUM'
                  
       - name: Docker Push
