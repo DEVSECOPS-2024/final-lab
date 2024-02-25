@@ -89,6 +89,13 @@ jobs:
     runs-on: self-hosted
     
     steps:
+
+    - name: Diagnóstico
+      run: |
+        echo "PATH: $PATH"
+        pwsh -version
+      shell: bash
+      
     - name: Pull de la Imagen Docker
       run: |
         docker pull mfigueroah/final-lab:latest
