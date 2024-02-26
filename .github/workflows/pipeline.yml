@@ -94,15 +94,15 @@ jobs:
     
     steps:
      
-     - name: Pull de la Imagen Docker
-       run: docker pull mfigueroah/final-lab:latest
+    - name: Pull de la Imagen Docker
+      run: docker pull mfigueroah/final-lab:latest
      
-     - name: Despliegue
-       run: docker run -p 8085:80 --name final-lab-deploy -d mfigueroah/final-lab:latest
+    - name: Despliegue
+      run: docker run -p 8085:80 --name final-lab-deploy -d mfigueroah/final-lab:latest
 
-     - name: OWASAP ZAP Scan
-       uses: zaproxy/action-baseline@v0.11.0
-       with:
-         target: 'http://localhost:8080/'
+    - name: OWASAP ZAP Scan
+      uses: zaproxy/action-baseline@v0.11.0
+      with:
+        target: 'http://localhost:8080/'
 
 
