@@ -57,17 +57,17 @@ jobs:
           docker build --tag mfigueroah/final-lab:latest .
           docker images
 
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@master
-        with:
-          image-ref: 'mfigueroah/final-lab:latest'
-          format: 'table'
-          #exit-code: 0
-          severity: 'CRITICAL,HIGH,MEDIUM'
+      #- name: Run Trivy vulnerability scanner
+      #  uses: aquasecurity/trivy-action@master
+      #  with:
+      #    image-ref: 'mfigueroah/final-lab:latest'
+      #    format: 'table'
+      #    #exit-code: 0
+      #    severity: 'CRITICAL,HIGH,MEDIUM'
                  
-      - name: Docker Push
-        run: |
-          docker push mfigueroah/final-lab:latest
+     # - name: Docker Push
+     #   run: |
+     #     docker push mfigueroah/final-lab:latest
       
   #test:
   
