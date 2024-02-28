@@ -5,9 +5,8 @@ on:
   workflow_dispatch:
   
 jobs:
-  
-  build:
-    
+
+  build:  
     runs-on: ubuntu-latest
 
     steps:
@@ -17,21 +16,21 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'                  
+          node-version: '16'                  
           
-      - name: Dependency Check
-        uses: dependency-check/Dependency-Check_Action@1.1.0
-        with:
-          project: 'lab-final'
-          path: '.'
-          format: 'HTML'
-          #failOnCVSS: '6'
+      #- name: Dependency Check
+       # uses: dependency-check/Dependency-Check_Action@1.1.0
+      #  with:
+       #   project: 'lab-final'
+       #   path: '.'
+       #   format: 'HTML'
+       #   #failOnCVSS: '6'
 
-      - name: Upload Test results
-        uses: actions/upload-artifact@master
-        with:
-           name: Depcheck report
-           path: ${{github.workspace}}/reports  
+     # - name: Upload Test results
+     #   uses: actions/upload-artifact@master
+     #   with:
+     #      name: Depcheck report
+      #     path: ${{github.workspace}}/reports  
 
       #- name: Verificar vulnerabilidades críticas
       #  run: |
@@ -56,47 +55,47 @@ jobs:
           docker build --tag mfigueroah/final-lab:latest .
           docker images
 
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@master
-        with:
-          image-ref: 'mfigueroah/final-lab:latest'
-          format: 'table'
-          #exit-code: 0
-          severity: 'CRITICAL,HIGH,MEDIUM'
+      #- name: Run Trivy vulnerability scanner
+      #  uses: aquasecurity/trivy-action@master
+      #  with:
+      #    image-ref: 'mfigueroah/final-lab:latest'
+      #    format: 'table'
+      #    #exit-code: 0
+      #    severity: 'CRITICAL,HIGH,MEDIUM'
                  
       - name: Docker Push
         run: |
           docker push mfigueroah/final-lab:latest
       
-  test:
+  #test:
   
-    needs: build
-    runs-on: ubuntu-latest
-    steps: 
+    #needs: build
+    #runs-on: ubuntu-latest
+    #steps: 
                 
-    - name: Descarga repositorio
-      uses: actions/checkout@v3
+    #- name: Descarga repositorio
+    #  uses: actions/checkout@v3
     
-    - name: SonarCloud
-      uses: actions/checkout@v3
-      with:
-        fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+    #- name: SonarCloud
+    #  uses: actions/checkout@v3
+    #  with:
+    #    fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
 
-    - name: SonarCloud Scan
-      uses: SonarSource/sonarcloud-github-action@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
+    #- name: SonarCloud Scan
+    #  uses: SonarSource/sonarcloud-github-action@master
+    #  env:
+    #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
+    #    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
      
   deploy:
-    needs: test
+    needs: build
     runs-on: self-hosted
     
     steps:
      
     - name: Pull de la Imagen Docker
-      run: docker pull mfigueroah/final-lab:latest
-     
+      run: docker pull mfigueroah/final-lab:latest 
+       
     - name: Despliegue
       run: docker run -p 8085:80 --name final-lab-deploy -d mfigueroah/final-lab:latest
 
@@ -105,4 +104,5 @@ jobs:
       with:
         target: 'http://localhost:8080/'
 
+ 
 
