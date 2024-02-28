@@ -17,7 +17,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'                  
+          node-version: '16'                  
           
       #- name: Dependency Check
        # uses: dependency-check/Dependency-Check_Action@1.1.0
@@ -93,12 +93,9 @@ jobs:
     runs-on: self-hosted
     
     steps:
-
-    - name: Descarga repositorio
-      uses: actions/checkout@v3
      
     - name: Pull de la Imagen Docker
-      run: docker pull mfigueroah/final-lab:latest
+      run: docker pull mfigueroah/final-lab:latest .
        
     - name: Despliegue
       run: docker run -p 8085:80 --name final-lab-deploy -d mfigueroah/final-lab:latest
