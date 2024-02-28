@@ -64,9 +64,9 @@ jobs:
       #    #exit-code: 0
       #    severity: 'CRITICAL,HIGH,MEDIUM'
                  
-     # - name: Docker Push
-     #   run: |
-     #     docker push mfigueroah/final-lab:latest
+      - name: Docker Push
+        run: |
+          docker push mfigueroah/final-lab:latest
       
   #test:
   
