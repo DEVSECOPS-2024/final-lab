@@ -93,6 +93,9 @@ jobs:
     runs-on: self-hosted
     
     steps:
+
+    - name: Descarga repositorio
+      uses: actions/checkout@v3
      
     - name: Pull de la Imagen Docker
       run: docker pull mfigueroah/final-lab:latest
