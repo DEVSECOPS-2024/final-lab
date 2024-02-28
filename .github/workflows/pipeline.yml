@@ -95,7 +95,7 @@ jobs:
     steps:
      
     - name: Pull de la Imagen Docker
-      run: docker pull mfigueroah/final-lab:latest .
+      run: docker pull mfigueroah/final-lab:latest 
        
     - name: Despliegue
       run: docker run -p 8085:80 --name final-lab-deploy -d mfigueroah/final-lab:latest
