@@ -1,21 +1,30 @@
 name: CI
-
 on:
-  
   push:
-  workflow_dispatch:
-  
-jobs:
-  
-  build:
+
     
+jobs:
+  sonarcloud:
     runs-on: ubuntu-latest
 
     steps:
-
-      - name: Descarga repositorio
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-  
-          
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Install dependencies
+        run: npm install
       
+      - name: Installsonnar scanner
+        run : npm install --save-dev sonar-scanner
+      
+      - name: SonarQube Quality Gate check
+        uses: sonarsource/sonarqube-quality-gate-action@master
+        env:
+          SONAR_TOKEN: ${{secrets.TOKEN_SONARCLOUD}}  
+          SONAR_HOST_URL: https://sonarcloud.io
+
